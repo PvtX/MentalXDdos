@@ -57,7 +57,6 @@ for x in Var.SUDO:
 
 @Ayu.on(events.NewMessage(pattern="^/ping"))
 async def ping(e):
-    if e.sender_id in SUDO_USERS:
         start = datetime.now()
         text = "Pong!"
         event = await e.reply(text, parse_mode=None, link_preview=None)
@@ -71,13 +70,21 @@ async def ping(e):
 async def start_command(event):
     # Send a picture and start message
     await event.respond(
-        "Welcome to the Ban All Bot!\n"
-        "This bot is designed to ban and unban users in groups",
+        "✨ нєу [{}](tg://user?id={}),
+
+───────────────────────
+× I'ᴍ Aɴɪᴍᴇ-Tʜᴇᴍᴇ Gʀᴏᴜᴘ Cʟᴇᴀɴ Bᴏᴛ
+× I'ᴍ Vᴇʀʏ Fᴀꜱᴛ Aɴᴅ Mᴏʀᴇ Eꜰꜰɪᴄɪᴇɴᴛ I Pʀᴏᴠɪᴅᴇ Aᴡᴇꜱᴏᴍᴇ Fᴇᴀᴛᴜʀᴇꜱ!
+───────────────────────
+**Mʏ Lɪʙ's Iɴғᴏ!**
+❍ Cᴏᴅᴇ Oᴡɴᴇʀ » [Aʟᴏɴᴇ](https://t.me/Itzz_AloneX)
+
+Type `/help` For Commands!",
         buttons=[
-            [Button.url("Support Channel", url="https://t.me/venomOwners")],
-            [Button.url("Support Group", url="https://t.me/venom_chatz")],
+            [Button.url("Support Channel", url="https://t.me/AloneXBots")],
+            [Button.url("Support All", url="https://t.me/addlist/MFlGJNbdpco3NTll")],
         ],
-        file='https://te.legra.ph/file/310a7fad596b00513692a.jpg',  # Replace with your image URL
+        file='https://telegra.ph//file/9e8ce3092848a1bc5d9d6.jpg',  # Replace with your image URL
     )
 
 
