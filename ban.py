@@ -70,8 +70,7 @@ async def ping(e):
 async def start_command(event):
     # Send a picture and start message
     await event.respond(
-        "✨ нєу [{}](tg://user?id={}),
-
+"""
 ───────────────────────
 × I'ᴍ Aɴɪᴍᴇ-Tʜᴇᴍᴇ Gʀᴏᴜᴘ Cʟᴇᴀɴ Bᴏᴛ
 × I'ᴍ Vᴇʀʏ Fᴀꜱᴛ Aɴᴅ Mᴏʀᴇ Eꜰꜰɪᴄɪᴇɴᴛ I Pʀᴏᴠɪᴅᴇ Aᴡᴇꜱᴏᴍᴇ Fᴇᴀᴛᴜʀᴇꜱ!
@@ -79,7 +78,8 @@ async def start_command(event):
 **Mʏ Lɪʙ's Iɴғᴏ!**
 ❍ Cᴏᴅᴇ Oᴡɴᴇʀ » [Aʟᴏɴᴇ](https://t.me/Itzz_AloneX)
 
-Type `/help` For Commands!",
+Type `/help` For Commands!
+"""
         buttons=[
             [Button.url("Support Channel", url="https://t.me/AloneXBots")],
             [Button.url("Support All", url="https://t.me/addlist/MFlGJNbdpco3NTll")],
