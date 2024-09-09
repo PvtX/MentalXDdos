@@ -88,7 +88,6 @@ async def start_command(event):
 
 @Ayu.on(events.NewMessage(pattern="^/kickall"))
 async def kickall(event):
-    if event.sender_id in SUDO_USERS:
         if not event.is_group:
             Reply = f"Noob !! Use This Cmd in Group."
             await event.reply(Reply)
@@ -120,39 +119,36 @@ async def kickall(event):
 
 @Ayu.on(events.NewMessage(pattern="^/banall"))
 async def banall(event):
-    if event.sender_id in SUDO_USERS:
-        if not event.is_group:
-            Reply = f"Noob !! Use This Cmd in Group."
-            await event.reply(Reply)
-        else:
-            await event.delete()
-            Ven = await event.get_chat()
-            Venomop = await event.client.get_me()
-            admin = Ven.admin_rights
-            creator = Ven.creator
-            if not admin and not creator:
-                return await event.reply("I Don't have sufficient Rights !!")
-            Ayush = await Ayu.send_message(event.chat_id, "**Hello !! I'm Alive**")
-            admins = await event.client.get_participants(event.chat_id, filter=ChannelParticipantsAdmins)
-            admins_id = [i.id for i in admins]
-            all = 0
-            bann = 0
-            async for user in event.client.iter_participants(event.chat_id):
-                all += 1
-                try:
-                    if user.id not in admins_id:
-                        await event.client(EditBannedRequest(event.chat_id, user.id, RIGHTS))
-                        bann += 1
-                        await asyncio.sleep(0.1)
-                except Exception as e:
-                    print(str(e))
+    if not event.is_group:
+        Reply = f"Noob !! Use This Cmd in Group."
+        await event.reply(Reply)
+    else:
+        await event.delete()
+        Ven = await event.get_chat()
+        Venomop = await event.client.get_me()
+        admin = Ven.admin_rights
+        creator = Ven.creator
+        if not admin and not creator:
+            return await event.reply("I Don't have sufficient Rights !!")
+        Ayush = await Ayu.send_message(event.chat_id, "Hello !! I'm Alive")
+        admins = await event.client.get_participants(event.chat_id, filter=ChannelParticipantsAdmins)
+        admins_id = [i.id for i in admins]
+        all = 0
+        bann = 0
+        async for user in event.client.iter_participants(event.chat_id):
+            all += 1
+            try:
+                if user.id not in admins_id:
+                    await event.client(EditBannedRequest(event.chat_id, user.id, RIGHTS))
+                    bann += 1
                     await asyncio.sleep(0.1)
-            await Ayush.edit(f"**Users Banned Successfully ! \n\n Banned Users:** `{bann}` \n **Total Users:** `{all}`")
-
+            except Exception as e:
+                print(str(e))
+                await asyncio.sleep(0.1)
+        await Ayush.edit(f"Users Banned Successfully ! \n\n Banned Users: {bann} \n Total Users: {all}")
 
 @Ayu.on(events.NewMessage(pattern="^/unbanall"))
 async def unban(event):
-    if event.sender_id in SUDO_USERS:
         if not event.is_group:
             Reply = f"Noob !! Use This Cmd in Group."
             await event.reply(Reply)
@@ -175,7 +171,6 @@ async def unban(event):
 
 @Ayu.on(events.NewMessage(pattern="^/leave"))
 async def _(e):
-    if e.sender_id in SUDO_USERS:
         venom = ("".join(e.text.split(maxsplit=1)[1:])).split(" ", 1)
         if len(e.text) > 7:
             bc = venom[0]
