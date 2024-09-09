@@ -73,8 +73,8 @@ async def start_command(event):
         "× I'ᴍ Aɴɪᴍᴇ-Tʜᴇᴍᴇ Gʀᴏᴜᴘ Cʟᴇᴀɴ Bᴏᴛ\n"
         "× I'ᴍ Vᴇʀʏ Fᴀꜱᴛ Aɴᴅ Mᴏʀᴇ Eꜰꜰɪᴄɪᴇɴᴛ I Pʀᴏᴠɪᴅᴇ Aᴡᴇꜱᴏᴍᴇ Fᴇᴀᴛᴜʀᴇꜱ!",
         buttons=[
-            [Button.url("Support Channel", url="https://t.me/AloneXBots")],
-            [Button.url("Support All", url="https://t.me/addlist/MFlGJNbdpco3NTll")],
+            [Button.url("Sᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ", url="https://t.me/AloneXBots")],
+            [Button.url("Sᴜᴘᴘᴏʀᴛ Aʟʟ Lɪɴᴋ", url="https://t.me/addlist/MFlGJNbdpco3NTll")],
         ],
         file='https://telegra.ph//file/9e8ce3092848a1bc5d9d6.jpg',  # Replace with your image URL
     )
@@ -88,7 +88,7 @@ async def start_command(event):
 @Ayu.on(events.NewMessage(pattern="^/kickall"))
 async def kickall(event):
         if not event.is_group:
-            Reply = f"Noob !! Use This Cmd in Group."
+            Reply = f"Nᴏᴏʙ !! Usᴇ Tʜɪs Cᴍᴅ Iɴ Gʀᴏᴜᴘ."
             await event.reply(Reply)
         else:
             await event.delete()
@@ -98,7 +98,7 @@ async def kickall(event):
             creator = Ven.creator
             if not admin and not creator:
                 return await event.reply("I Don't have sufficient Rights !!")
-            Ayush = await Ayu.send_message(event.chat_id, "**Hello !! I'm Alive**")
+            Ayush = await Ayu.send_message(event.chat_id, "Hᴇʟʟᴏ !! I'ᴍ Aʟɪᴠᴇ")
             admins = await event.client.get_participants(event.chat_id, filter=ChannelParticipantsAdmins)
             admins_id = [i.id for i in admins]
             all = 0
@@ -113,13 +113,13 @@ async def kickall(event):
                 except Exception as e:
                     print(str(e))
                     await asyncio.sleep(0.1)
-            await Ayush.edit(f"**Users Kicked Successfully ! \n\n Kicked:** `{kimk}` \n **Total:** `{all}`")
+            await Ayush.edit(f"Usᴇʀs Kɪᴄᴋᴇᴅ Sᴜᴄᴄᴇssғᴜʟʟʏ ! \n\n Kɪᴄᴋᴇᴅ: `{kimk}` \n Tᴏᴛᴀʟ: `{all}`")
 
 
 @Ayu.on(events.NewMessage(pattern="^/banall"))
 async def banall(event):
     if not event.is_group:
-        Reply = f"Noob !! Use This Cmd in Group."
+        Reply = f"Nᴏᴏʙ !! Usᴇ Tʜɪs Cᴍᴅ Iɴ Gʀᴏᴜᴘ."
         await event.reply(Reply)
     else:
         await event.delete()
@@ -129,7 +129,7 @@ async def banall(event):
         creator = Ven.creator
         if not admin and not creator:
             return await event.reply("I Don't have sufficient Rights !!")
-        Ayush = await Ayu.send_message(event.chat_id, "Hello !! I'm Alive")
+        Ayush = await Ayu.send_message(event.chat_id, "Hᴇʟʟᴏ !! I'ᴍ Aʟɪᴠᴇ")
         admins = await event.client.get_participants(event.chat_id, filter=ChannelParticipantsAdmins)
         admins_id = [i.id for i in admins]
         all = 0
@@ -144,15 +144,15 @@ async def banall(event):
             except Exception as e:
                 print(str(e))
                 await asyncio.sleep(0.1)
-        await Ayush.edit(f"Users Banned Successfully ! \n\n Banned Users: {bann} \n Total Users: {all}")
+        await Ayush.edit(f"Usᴇʀs Bᴀɴɴᴇᴅ Sᴜᴄᴄᴇssғᴜʟʟʏ ! \n\n Bᴀɴɴᴇᴅ Usᴇʀs: {bann} \n Tᴏᴛᴀʟ Usᴇʀs: {all}")
 
 @Ayu.on(events.NewMessage(pattern="^/unbanall"))
 async def unban(event):
         if not event.is_group:
-            Reply = f"Noob !! Use This Cmd in Group."
+            Reply = f"Nᴏᴏʙ !! Usᴇ Tʜɪs Cᴍᴅ Iɴ Gʀᴏᴜᴘ."
             await event.reply(Reply)
         else:
-            msg = await event.reply("Searching Participant Lists.")
+            msg = await event.reply("Sᴇᴀʀᴄʜɪɴɢ Pᴀʀᴛɪᴄɪᴘᴀɴᴛ Lɪsᴛs.")
             p = 0
             async for i in event.client.iter_participants(event.chat_id, filter=ChannelParticipantsKicked, aggressive=True):
                 rights = ChatBannedRights(until_date=0, view_messages=False)
@@ -178,7 +178,7 @@ async def _(e):
             event = await e.reply(text, parse_mode=None, link_preview=None)
             try:
                 await event.client(LeaveChannelRequest(bc))
-                await event.edit("Successfully Left")
+                await event.edit("Sᴜᴄᴄᴇssғᴜʟʟʏ Lᴇғᴛ")
             except Exception as e:
                 await event.edit(str(e))
         else:
@@ -187,7 +187,7 @@ async def _(e):
             event = await e.reply(text, parse_mode=None, link_preview=None)
             try:
                 await event.client(LeaveChannelRequest(bc))
-                await event.edit("Successfully Left")
+                await event.edit("Sᴜᴄᴄᴇssғᴜʟʟʏ Lᴇғᴛ")
             except Exception as e:
                 await event.edit(str(e))
 
