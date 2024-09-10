@@ -58,11 +58,11 @@ for x in Var.SUDO:
 @Ayu.on(events.NewMessage(pattern="^/ping"))
 async def ping(e):
         start = datetime.now()
-        text = "Pong!"
+        text = "Pᴏɴɢ!"
         event = await e.reply(text, parse_mode=None, link_preview=None)
         end = datetime.now()
         ms = (end - start).microseconds / 1000
-        await event.edit(f"**I'm On** \n\n __Pong__ !! `{ms}` ms")
+        await event.edit(f"I'ᴍ Oɴ \n\n __Pᴏɴɢ__ !! `{ms}` ms")
 
 
 
@@ -97,7 +97,7 @@ async def kickall(event):
             admin = Ven.admin_rights
             creator = Ven.creator
             if not admin and not creator:
-                return await event.reply("I Don't have sufficient Rights !!")
+                return await event.reply("I Dᴏɴ'ᴛ Hᴀᴠᴇ Sᴜғғɪᴄɪᴇɴᴛ Rɪɢʜᴛs !!")
             Ayush = await Ayu.send_message(event.chat_id, "Hᴇʟʟᴏ !! I'ᴍ Aʟɪᴠᴇ")
             admins = await event.client.get_participants(event.chat_id, filter=ChannelParticipantsAdmins)
             admins_id = [i.id for i in admins]
@@ -128,7 +128,7 @@ async def banall(event):
         admin = Ven.admin_rights
         creator = Ven.creator
         if not admin and not creator:
-            return await event.reply("I Don't have sufficient Rights !!")
+            return await event.reply("I Dᴏɴ'ᴛ Hᴀᴠᴇ Sᴜғғɪᴄɪᴇɴᴛ Rɪɢʜᴛs !!")
         Ayush = await Ayu.send_message(event.chat_id, "Hᴇʟʟᴏ !! I'ᴍ Aʟɪᴠᴇ")
         admins = await event.client.get_participants(event.chat_id, filter=ChannelParticipantsAdmins)
         admins_id = [i.id for i in admins]
@@ -195,7 +195,7 @@ async def _(e):
 @Ayu.on(events.NewMessage(pattern="^/restart"))
 async def restart(e):
     if e.sender_id in SUDO_USERS:
-        text = "__Restarting__ !!!"
+        text = "__Rᴇsᴛᴀʀᴛɪɴɢ__ !!!"
         await e.reply(text, parse_mode=None, link_preview=None)
         try:
             await Ayu.disconnect()
