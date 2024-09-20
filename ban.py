@@ -76,7 +76,7 @@ async def start_command(event):
             [Button.url("Sᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ", url="https://t.me/AloneXBots")],
             [Button.url("Sᴜᴘᴘᴏʀᴛ Aʟʟ Lɪɴᴋ", url="https://t.me/addlist/MFlGJNbdpco3NTll")],
         ],
-        file='https://telegra.ph//file/9e8ce3092848a1bc5d9d6.jpg',  # Replace with your image URL
+        file='https://envs.sh/0Dr.jpg',  # Replace with your image URL
     )
 
 
