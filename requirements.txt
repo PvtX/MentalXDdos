@@ -1,3 +1,7 @@
 python-dotenv
 telethon
+telebot
+Flask
+aiogram
+pip install -r requirement.txt
 
