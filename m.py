@@ -235,8 +235,8 @@ def handle_bgmi(message):
             target = command[1]
             port = int(command[2])  # Convert time to integer
             time = int(command[3])  # Convert port to integer
-            if time > 5000:
-                response = "Error: Time interval must be less than 4000."
+            if time > 181:
+                response = "Error: Time interval must be less than 80."
             else:
                 record_command_logs(user_id, '/bgmi', target, port, time)
                 log_command(user_id, target, port, time)
@@ -270,7 +270,6 @@ def show_command_logs(message):
             response = "No command logs found."
     else:
         response = "You Are Not Authorized To Use This Command 😡."
-
     bot.reply_to(message, response)
 
 
